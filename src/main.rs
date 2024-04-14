@@ -5,7 +5,6 @@ use wasm_bindgen::prelude::*;
 use crate::tutorial1::run;
 
 mod tutorial1;
-mod state;
 
 #[tokio::main]
 async fn runner() {
