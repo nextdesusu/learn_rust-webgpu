@@ -2,13 +2,12 @@ use tokio;
 #[cfg(target_arch = "wasm32")]
 use wasm_bindgen::prelude::*;
 
-use crate::tutorial_surface::run;
-
 mod tutorial_surface;
+mod tutorial_pipeline;
 
 #[tokio::main]
 async fn runner() {
-    tutorial_surface::run().await;
+    tutorial_pipeline::run().await;
 }
 
 #[cfg_attr(target_arch = "wasm32", wasm_bindgen(start))]
