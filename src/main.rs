@@ -5,10 +5,11 @@ use wasm_bindgen::prelude::*;
 mod tutorial_surface;
 mod tutorial_pipeline;
 mod tutorial_buffers;
+mod tutorial_textures;
 
 #[tokio::main]
 async fn runner() {
-    tutorial_buffers::run().await;
+    tutorial_textures::run().await;
 }
 
 #[cfg_attr(target_arch = "wasm32", wasm_bindgen(start))]
