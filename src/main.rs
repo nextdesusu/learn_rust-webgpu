@@ -6,10 +6,11 @@ mod tutorial_surface;
 mod tutorial_pipeline;
 mod tutorial_buffers;
 mod tutorial_textures;
+mod tutorial_buffers_and_camera;
 
 #[tokio::main]
 async fn runner() {
-    tutorial_textures::run().await;
+    tutorial_buffers_and_camera::run().await;
 }
 
 #[cfg_attr(target_arch = "wasm32", wasm_bindgen(start))]
