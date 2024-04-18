@@ -379,13 +379,13 @@ impl State {
     }
 
     pub fn update(&mut self) {
-        let newInstances = self.instances.iter_mut().map(|instance| {
+        let new_instances = self.instances.iter_mut().map(|instance| {
             instance.challenge();
             instance.to_raw()
         }).collect::<Vec::<InstanceRaw>>();
         let instance_buffer = self.device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
             label: Some("Instance Buffer"),
-            contents: bytemuck::cast_slice(&newInstances),
+            contents: bytemuck::cast_slice(&new_instances),
             usage: wgpu::BufferUsages::VERTEX,
         });
         self.instance_buffer = instance_buffer;
