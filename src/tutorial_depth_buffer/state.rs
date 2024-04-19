@@ -3,12 +3,7 @@ use wgpu::util::DeviceExt;
 use winit::{event::WindowEvent, window::Window};
 
 use super::{
-    camera::Camera,
-    camera_controller::CameraController,
-    camera_uniform::CameraUniform,
-    instance::{Instance, InstanceRaw},
-    texture::Texture,
-    vertex::Vertex,
+    camera::Camera, camera_controller::CameraController, camera_uniform::CameraUniform, depth_pass::DepthPass, instance::{Instance, InstanceRaw}, texture::Texture, vertex::Vertex
 };
 
 // Если будут ошибки
@@ -65,6 +60,9 @@ pub struct State {
     instance_buffer: wgpu::Buffer,
 
     depth_texture: Texture,
+
+    // Challenge
+    depth_pass: DepthPass,
 }
 
 impl State {
@@ -343,6 +341,8 @@ impl State {
 
         let num_indices = INDICES.len() as u32;
 
+        let depth_pass = DepthPass::new(&device, &config);
+
         Self {
             window,
             surface,
@@ -365,6 +365,7 @@ impl State {
             instance_buffer,
 
             depth_texture,
+            depth_pass,
         }
     }
 
@@ -453,6 +454,8 @@ impl State {
             // UPDATED!
             render_pass.draw_indexed(0..self.num_indices, 0, 0..self.instances.len() as _);
         }
+
+        self.depth_pass.render(&view, &mut encoder);
 
         // submit will accept anything that implements IntoIter
         self.queue.submit(std::iter::once(encoder.finish()));

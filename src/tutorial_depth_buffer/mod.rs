@@ -11,6 +11,7 @@ mod vertex;
 mod camera_uniform;
 mod camera_controller;
 mod instance;
+mod depth_pass;
 
 pub async fn run() {
     let event_loop = EventLoop::new();
