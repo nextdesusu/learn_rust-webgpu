@@ -9,10 +9,11 @@ mod tutorial_textures;
 mod tutorial_buffers_and_camera;
 mod tutorial_instancing;
 mod tutorial_depth_buffer;
+mod tutorial_model_loading;
 
 #[tokio::main]
 async fn runner() {
-    tutorial_depth_buffer::run().await;
+    tutorial_model_loading::run().await;
 }
 
 #[cfg_attr(target_arch = "wasm32", wasm_bindgen(start))]
